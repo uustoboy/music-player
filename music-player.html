@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5 播放器</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="">
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="no" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+<style>
+	*{margin:0;padding:0;}
+	li{ list-style: none;}
+	a{ text-decoration: none;}
+	html,body{width:100%; height:100%; font-family: 'microsoft yahei', Arial, Helvetica, sans-serif;}
+	body{-webkit-tap-highlight-color: rgba(0,0,0,0); }
+	.tac{ text-align:center;}
+	.fl{ float:left;}
+	.fr{ float:right;}
+
+	.body_bg{transition:opacity 0.5s ease-in; position:absolute;left:0;top:0; width:100%; height:100%; background-image:url(img/bg.jpg) 0 0 no-repeat;   background-size: cover; opacity: 0;}
+	.body_bg.cur{opacity:1;}
+	.list_main{overflow-y: auto;}
+	.list_ul{ width:100%;}
+	.list_ul li{ position:relative; min-height: 55px; font-size: 14px; padding:0 20px; color:#fff; line-height: 20px;}
+	.list_ul li.cur{ color:#f48e4a;}
+	.list_line{ position:absolute;left:0;bottom:0; width:100%; height:1px; background: rgba(0,0,0,.3);}
+	.list_ul .music_mian{ position:absolute;top:50%;transform: translateY(-50%);}
+	.list_ul p{ font-size: 14px;}
+	.audio_main{ position:fixed; bottom:0;left:0; width:100%; height:100px;background:rgba(0,0,0,.3); }
+	.process_line{ position:relative; width:100%; height:3px; background-color: #fff; }
+	.progress_after{ position:absolute;left:0;top:0; width:0px; height:3px; background-color: #f48e4a;}
+	.process_main{  }
+	.music_time{ color:#fff; font-size: 12px;margin:5px;}
+	.music_btn{ position:absolute;bottom:0;left:50%; width:238px;  transform: translateX(-50%);}
+	.music_btn a{ display:inline-block; width:60px; height:46px; background:url(img/player.png) no-repeat 0 0; font-size: 0;}
+	.music_btn .music_before{background-position:-143px 0; }
+	.music_btn .music_switch{ background-position:-68px 0;margin-right:20px;}
+	.music_btn .cur{ background-position:-68px -140px;}
+	.music_btn .music_after{background-position:0px 0;margin-right:20px;}
+	.name_singer{ color:#fff; margin:5px; font-size:12px;}
+	.audio_dot{ position:absolute;left:0;top:-6px; width:14px; height:14px;border-radius: 50%; background:#fff;}
+	 .audio_Bgdot{ position:absolute;left:-15px;top:-15px; width:44px; height:44px;background:rgba(0,0,0,0);}
+	.turn{ position:absolute;left: -36px;bottom: 12px; width:30px;height:30px; text-align:center;line-height: 30px; font-size: 14px; color:#fff;}
+</style>
+</head>
+<body>
+	<div class="body_bg" style="background-image:url(img/bg.jpg); opacity:1; "></div>
+	<div class="list_main" id="list_main">
+		<ul class="list_ul" id="list_ul">
+		</ul>
+	</div>
+	<div class="audio_main" id="audio_main">
+			<div class="process_main">
+				<div class="process_line" id="process_line">
+					<div class="progress_after" id="line_after"></div>
+					<div class="audio_dot" id="dot">
+						<div  class="audio_Bgdot"></div>
+					</div>
+				</div>
+			</div>
+			<div class="fl music_time" id="time_start">00:00</div>
+			<div class="fr music_time" id="time_end">00:00</div>
+            <div class="tac name_singer" id="name_txt"></div>
+            <div class="tac name_singer" id="singer_txt"></div>
+            <div class="music_btn">
+				<a href="javascript:;" class="music_after" id="music_after"></a>
+				<a href="javascript:;" class="music_switch" id="music_switch"></a>
+				<a href="javascript:;" class="music_before" id="music_before"></a>
+				<div class="turn" id="turn">顺</div>
+			</div> 
+	</div>
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript" src="js/music.js"></script>
+
+	<script type="text/javascript">
+	$(function(){
+
+		var audios = [
+				
+				{
+					name:'暗号',                //歌曲名称
+					singer:'周杰伦', 			//歌手
+					src:'music/01.mp3',         //音乐路径
+					cover:'img/cover.jpg'		//背景图片
+				},
+				{
+					name:'One Day.mp3',
+					singer:'Kodaline',
+					src:'music/03.mp3',
+					cover:''
+				},
+				
+				{
+					name:'Hall Of Fame ',
+					singer:'The Script Feat Will.I.Am',
+					src:'music/05.mp3',
+					cover:''
+				},
+				{
+					name:'Rumour Has It',
+					singer:'未知',
+					src:'music/06.mp3',
+					cover:''
+				}
+				
+		];
+
+		Music.init(audios);
+
+	});
+	</script>
+</body>
+</html>
